@@ -1,0 +1,17 @@
+#+TITLE: Blog
+#+DATE: <2018-06-23 Sat>
+#+AUTHOR: Chao Liu
+#+EMAIL: chaoliu@seas.upenn.edu
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:t todo:t |:t
+#+CREATOR: Emacs 25.3.1 (Org mode 8.2.10)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+OPTIONS: toc:nil
+
+My blog source files powered by [[https://hexo.io/][Hexo]] and rendered by [[https://github.com/coldnew/hexo-renderer-org][hexo-renderer-org]]. This repo doesn't contain theme plugin.
