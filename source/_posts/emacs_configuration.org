@@ -1,0 +1,115 @@
+#+TITLE: Emacs Configuration
+#+DATE: <2017-01-03 Tue>
+#+TAGS: Emacs
+
+* Introduction
+*Emacs* is an extensible, customizable, free/libre text editor. [fn:1] For more information, check [[https:www.gnu.org/software/emacs/][Gnu Emacs]].
+
+#+HTML: <!--more-->
+
+For Emacs beginners, it's hard to have a suitable Emacs configuration. There are some good popular kits which are helpful for people to use, such as =emacs24-starter-kit=, =emacs prelude= and =Steven Purcell's emacs.d=. This is the note of my configuration and it should be updated frequently.
+* Why Emacs
+Why do I want to use Emacs? Because it's fast and efficient. There are tons of pages introducing how useful Emacs can be. In terms of my use of Emacs, it can give you a relatively integral experiences dealing with most of tasks you are facing efficiently.
+* Emacs Configuration
+My [[https://github.com/wuliuxiansheng/Emacs_Configuration][Emacs Configuration]] is based on Steven Purcell's emacs.d [fn:2] project whose framework is clean and clear. Purcell is a web developer so most of his configurations are for web development. I am a robotics guy and I am more interested in different topics. I work on programming a lot with C/C++, Python and MATLAB and also write papers using LaTeX. GitHub and SVN are extremely useful for my development. Plus, email is necessary for everyone. This Emacs configuration is helpful for these things plus some other useful tools which are capable of making your workflow more efficient.
+
+There are three different installation modes: /full/, /text/ and /programming/. The default installation mode is /full/. When selecting /text/, corresponding configurations and packages about Python, C/C++, MATLAB, ROS, HTML and XML won't be loaded. When selecting /programming/, corresponding configurations and packages about Markdown, TeX, Email and Blog won't be loaded. Make an option before starting.
+
+** Programming
+*** C/C++
+- K&R indent style for C/C++ programming;
+- Three key-bindings for embedded programming with microcontroller:
+  1. =C-x C m=: /make/;
+  2. =C-x C f=: /make flash/;
+  3. =C-x C c=: /make clean/.
+- CEDET Configuration
+  1. *Semantic* with *company-semantic* is configured for C/C++ programming. See [[http://cedet.sourceforge.net/semantic.shtml][Semantic]] in CEDET, for details;
+  2. *EDE* mode is enabled for C/C++ project and project local variables can be stored in =.emacs.d/cc-mode-projects.el=;
+  3. *company-c-headers* is configured to enable the completion of C/C++ header file names using Company mode for Emacs and =.emacs.d/cc-mode-header-custom.el= can be used to customize the include paths.
+- RTags and Irony-Mode Configuration
+  1. *RTags* is configured for C/C++ code navigation. See [[http://www.rtags.net][RTags]] for details;
+  2. *Irony-Mode* with *company-irony* is configured for C/C++ code completion using Company mode. See [[https://github.com/Sarcasm/irony-mode][Irony-Mode]] for details;
+  3. *company-irony-c-headers* is configured to enable the completion of C/C++ header files using Company mode;
+  4. *flycheck-irony* package is configured to work with *Flycheck* for syntax checking.
+- *cmake-mode*, as well as *company-cmake*, are configured for editing CMake source files.
+- *clang-format* is configured to automatically format C/C++ code.
+Detailed configuration introduction can be found in [[http://www.seas.upenn.edu/~chaoliu/2017/09/01/c-cpp-programming-in-emacs/][this post]].
+*** Python
+- *Jedi* is configured for Python programming and =.emacs.d/jedi-custom.el= can be used to customize Jedi, like adding some special *sys.path* when starting Jedi server. See [[http://tkf.github.io/emacs-jedi/latest/][Documentation]] of Jedi, for details;
+- *IPython* is used as Python shell interpreter. See [[https://ipython.org][IPython]] for details;
+- *autopep8* is required for automatically formatting Python code to conform to the /PEP 8/ style guide. See [[https://pypi.python.org/pypi/autopep8][autopep8]] package for details.
+Detailed configuration introduction can be found in [[http://www.seas.upenn.edu/~chaoliu/2017/09/01/python-programming-in-emacs/][this post]].
+*** MATLAB
+*matlab mode* package is configured for editing .m-files and launching MATLAB shell.
+*** ROS (Robot Operating System)
+- *rosemacs* is configured for ROS users;
+- *yaml-mode*, *nxml-mode* and *cmake-mode* are configured for editing YAML files, XML files and =CMakeLists.txt= respectively.
+*** Arduino
+- *arduino-mode* is configured for programming Arduino boards;
+- *Irony-Mode* with *company-irony* is configured for code completion;
+- *company-c-headers* is configured for header file completion.
+
+** Writing
+*** Org mode
+Org mode is for keeping notes, maintaining TODO lists, planning projects, and authoring documents with a fast and effective plain-text system. [fn:3] Most of my Org mode configurations are from Purcell. Furthermore, I added these following settings:
+- MobileOrg is configured to synchronize the contents on a mobile platform with those stored in Dropbox on a computer. Directories can be customized by setting some variables in =init-org.el=;
+- *org-bullets* is used for Org mode in Emacs to show org-mode bullets as UTF-8 characters;
+- Size of heading fonts is customized for better view;
+- *CDLaTex* is used for editing math part.
+*** TeX
+- *AUCTeX* is configured for writing and formatting TeX files in Emacs. See [[https://www.gnu.org/software/auctex/][homepage]] of AUCTeX for details.
+  - *XeLaTeX* is configured to be the default TeX engine. After compiling the source files, a synctex.gz file will be generated for forward and inverse search;
+  - [[http://skim-app.sourceforge.net][Skim]] is required for Mac users, [[https://okular.kde.org][Okular]] is required for Ubuntu users and [[https://www.sumatrapdfreader.org/free-pdf-reader.html][Sumatra PDF]] is required for Windows users to view generated PDF files.
+- *company-math* is configured for math unicode symbols and latex tags completion. See [[https://github.com/vspinu/company-math/blob/master/readme.md][README]] in company-math for details;
+*** Markdown
+*markdown-mode* is configured to support Markdown in Emacs. See [[https://github.com/defunkt/markdown-mode/blob/master/README.md][README]] in markdown-mode, for details.
+*** Notes Management
+*Deft* is configured to manage my notes in Emacs. See [[https://github.com/jrblevin/deft/blob/master/README.md][README]] in Deft for details.
+- Notes directory can be customized by setting /deft-directory/ in =init-deft.el=;
+- =C-x N=: launch Deft;
+- =C-c n=: use Deft to find notes.
+*** Blog
+*blog-admin* is configured to write blogs in Emacs with [[https://hexo.io][Hexo]] framework. See [[https://github.com/CodeFalling/blog-admin/blob/master/README.org][README]] in blog-admin for details.
+** Version Control
+*** Git
+- *git-blamed*, *git-messenger* and *git-timemachine* are useful tools for using Git in Emacs;
+- *Magit* is a very power interface to Git in Emacs. See [[https://magit.vc][Magit homepage]] for details;
+- *gist*, *github-browse-file*, *github-clone* and some other packages are installed for GitHub in Emacs;
+- =C-x v p=: use /git-messenger/ to pop up messages;
+- =C-x g=: invoke Magit.
+*** SVN
+Emacs has built-in version control interface which is pretty nice for SVN. *psvn* is also installed for using SVN in Emacs. *git-svn* is recommended for SVN users (see [[https:git-scm.com/docs/git-svn][git-svn]], for more details).
+- =C-x v d=: vc-directory -- show all files which are not up to date.
+** Email
+Gnus is configured to be an email client in Emacs. Most of my configurations are from Chen Bin. See [[https://github.com/redguardtoo/mastering-emacs-in-one-year-guide/blob/master/gnus-guide-en.org][this article]] for details. In addition, I configured *BBDB* for its new version with *company mode* for address completion.
+** Tools
+- *company-mode* is configured for completion. See [[http://company-mode.github.io][homepage]] of company-mode for details;
+- *dired+* and *dired-sort* are configured to enhance Emacs directory editor;
+- *iedit* is configured to edit multiple regions simultaneously in a buffer or a region. Use =C-c ;= to invoke iedit-mode;
+- *fill-column-indicator* is configured to graphically indicates the fill column;
+- *Flycheck* is configured to do syntax checking for Emacs. See [[http://www.flycheck.org/en/latest/][homepage]] of Flycheck for details;
+- *Flyspell* is configured to do spell checking in Emacs. See [[http://www-sop.inria.fr/members/Manuel.Serrano/flyspell/flyspell.html][homepage]] of Flyspell for details. Use =M-c= to correct spelling of the word at a point or a region;
+- Default font settings can be found in =init-fonts.el=. The sizes of fonts for different operating systems are set differently to ensure the table with Chinese characters in Org mode can be aligned well;
+- Use =C-x C-b= to invoke ibuffer;
+- *Ivy*, *Counsel* and *Swiper* are configured. See [[https://github.com/abo-abo/swiper/blob/master/README.md][README]] in swiper, for details;
+- *BBDB* is used to manage address book for email and *gmail2bbdb* is installed to import name and email from Gmail contacts into BBDB file;
+- *MultiTerm* is configured to be the interface to the terminal. See [[https://www.emacswiki.org/emacs/MultiTerm][Multi Term]] on Emacs Wiki, for details. Use =C-x M= to invoke multi-term;
+- *Projectile* is configured to manage projects in Emacs. See [[https://github.com/bbatsov/projectile/blob/master/README.md][README]] in Projectile, for details. Hit =C-c p= and wait for a little bit, user can get a menu of Projectile.
+- *Smex* is configured to enhance =M-x= for Emacs;
+- *Tramp mode* is configured for ssh;
+- *whitespace-cleanup-mode* is installed and whitespace is showed by default;
+- *YASnippet* is configured to be a template system for Emacs. Use =C-c k= to expand using YASnippet.
+
+
+
+
+* Footnotes
+
+[fn:1] Gnu Emacs, https:www.gnu.org/software/emacs/
+
+[fn:2] Purcell's emacs.d, [[https://github.com/purcell/emacs.d]]
+
+[fn:3] Org mode, http://orgmode.org
+
+
+# #+DATE: <2016-07-09 Sat> # This is the date when starting writing this post

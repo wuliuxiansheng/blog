@@ -1,0 +1,53 @@
+#+TITLE: ROS Programming in Emacs
+#+DATE: <2018-03-12>
+#+LAYOUT: post
+#+TAGS: Robotics, ROS
+#+CATEGORIES:
+
+* Introduction
+The *Robot Operating System* (ROS) is a flexible framework for writing robot software. It is a collection of tools, libraries, and conventions that aim to simplify the task of creating complex and robust robot behavior across a wide variety of robotic platform [fn:1]. In my research experiences, I have to write ROS programs a lot, also use ROS tools very often. This post is intended to show how to do ROS work in Emacs.
+
+#+HTML: <!--more-->
+
+This post shows some basic configurations for ROS without covering configurations for C/C++ and Python programming which are in [[http://www.seas.upenn.edu/~chaoliu/2017/09/01/c-cpp-programming-in-emacs/][C/C++ Programming in Emacs]] and [[http://www.seas.upenn.edu/~chaoliu/2017/09/01/python-programming-in-emacs/][Python Programming in Emacs]]. The original configuration in this post is from my [[https://github.com/wuliuxiansheng/Emacs_Configuration][Emacs configuration]] and the overall configuration introduction is [[http://www.seas.upenn.edu/~chaoliu/2017/01/03/emacs_configuration/][here]].
+
+* Emacs Extension for ROS
+** Rosemacs
+[[http://wiki.ros.org/rosemacs][Rosemacs]] is an Emacs package for dealing with ROS. Detailed installation steps and usages can be found [[http://wiki.ros.org/rosemacs][here]]. Rosemacs provides various commands to simplify working with ROS [fn:2], such as navigating ROS file systems, tracking topic, running ROS programs, view ROS events and so on. The best thing for me is that I don't need to open so many terminals any more when interacting with ROS and I can switch to any running process by switching buffer in Emacs which is super convenient to manage ROS processes.
+
+** Compiling Commands
+I made two interactive functions to invoke ~catkin_make~ command for ROS programs:
+#+BEGIN_SRC emacs-lisp
+  (defun ros-catkin-make (dir)
+    "Run catkin_make command in DIR."
+    (interactive (list (read-directory-name "Directory: ")))
+    (let* ((default-directory dir)
+           (compilation-buffer-name-function (lambda (major-mode-name) "*catkin_make*")))
+      (compile "catkin_make"))
+    )
+
+  (defun ros-catkin-make-json (dir)
+    "Run catkin_make command in DIR."
+    (interactive (list (read-directory-name "Directory: ")))
+    (let* ((default-directory dir)
+           (compilation-buffer-name-function (lambda (major-mode-name) "*catkin_make*")))
+      (compile "catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ."))
+    )
+
+  (global-set-key (kbd "C-x C-r M") 'ros-catkin-make)
+  (global-set-key (kbd "C-x C-r C-j") 'ros-catkin-make-json)
+#+END_SRC
+~ros-catkin-make~ is used to run ~catkin_make~ and ~ros-catkin-make-json~ is used to run ~catkin_make~ with a compile flag to generate a =compile_commands.json= file. These two functions are bound with =C-x C-r M= and =C-x C-r C-j= respectively.
+** YAML Mode
+*YAML* file is a commonly used type of file in ROS. *yaml-mode*, after installation, is configured and loaded with following:
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+  (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+#+END_SRC
+
+* Footnotes
+
+[fn:1] About ROS, http://www.ros.org/about-ros/
+
+[fn:2] Rosemacs, http://wiki.ros.org/rosemacs
+

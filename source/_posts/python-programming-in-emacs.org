@@ -1,0 +1,116 @@
+#+TITLE: Python Programming in Emacs
+#+DATE: <2017-09-01>
+#+LAYOUT: post
+#+TAGS: Emacs, Python
+#+CATEGORIES:
+
+* Introduction
+Emacs is a highly extensible text editor and the community keeps growing where you can obtain a lot of support for almost all your needs as a programmer, including Python which is a super prevalent programming language, especially in robotics, machine learning, data mining and so forth. This post is intended to show how to set up a Python programming environment in Emacs.
+
+#+HTML: <!--more-->
+
+For a complete Python programming environment, it should contains some basic functions: =project management=, =code completion=, =code navigation=, =interactive programming=, =syntax checking=, =code refactoring= and =testing=. This post covers all of them except code refactoring and testing. And the configuration in this post is from my [[https://github.com/wuliuxiansheng/Emacs_Configuration][Emacs configuration]] and the overall configuration introduction is [[http://www.seas.upenn.edu/~chaoliu/2017/01/03/emacs_configuration/][here]].
+
+* Basic Editor Configurations
+It is necessary to have Emacs provide some useful command for basic text editing. Some useful packages are listed here and the detailed configurations can be found in my [[https://github.com/wuliuxiansheng/Emacs_Configuration][Emacs configuration]]. *Ivy*, *Counsel* and *Swiper* are useful tools for minibuffer completion in Emacs. *avy* is a nice tool for jumping to visible text. *iedit* allows user to edit one occurrence of some text in a buffer or region and simultaneously have other occurrences edited in the same way with visual feedback as you type [fn:1]. *fill-column-indicator* can graphically indicate the location of the fill column by drawing a thin line which is helpful to keep all lines of code with a consistent length.
+
+* Python Programming
+** Python Packages
+These Python packages are required to have a complete Python programming environment:
+- IPython 4.2.1
+- autopep8
+- Jedi
+- python-epc
+- Flake8
+
+*IPython* is a powerful interactive shell for Python. It has a lot of cool and useful features. From IPython 5.0, new terminal interface is used which is not compatible with Emacs "inferior-shell" feature. Most IPython features have to be disabled in order to use newer version of IPython [fn:2]. Hence IPython 4.2.1 is recommended.
+
+*autopep8* automatically formats Python code to conform to the [[https://www.python.org/dev/peps/pep-0008/][PEP 8]] style guide[fn:3].
+
+*Jedi* is an autocompletion tool for Python that can be used for text editors [fn:4]. EPC is an RPC stack for Emacs Lisp and *Python-EPC* is its server side and client side implementation in Python. These two Python packages are required to do Python code completion in Emacs. Equivalent packages can be rope, ropemacs and Pymacs. According to my experience, Rope is a little bit slower and less integral completion. However Rope can do code refactoring which Jedi is not good at.
+
+*Flake8* is a wrapper around these tools: PyFlakes, pycodestyle, Ned Batchelder's McCabe script and it runs all the tools by launching the single ~flake8~ command [fn:7]. It is a nice linting tool to automatically check Python codes.
+
+** Emacs Packages and Configurations
+Emacs already has out-of-box Python support via =python-mode=. There are a number of Python major modes for Emacs. As well as basic editing these all provide a range of IDE-like features, relying on a mix of native Emacs features and external Emacs/Python packages: *python.el*, *python-mode.el* and *'love shack' python.el*. *python.el* comes with Emacs 24.2 and up and my configurations are working with this major mode.
+
+*** Project Management
+*Projectile* is a project interaction library for Emacs. Its goal is to provide a nice set of features operating on a project level without introducing external dependencies (when feasible) [fn:5]. This is not just limited to Python programming. See [[http://projectile.readthedocs.io/en/latest/][Projectile Docs]] for more details. I borrowed some Emacs configurations about Porjectile from [[https://github.com/purcell/emacs.d][Purcell's emacs.d]] shown in the following:
+#+BEGIN_SRC emacs-lisp
+  (after-load 'projectile
+    (setq-default
+     projectile-mode-line
+     '(:eval
+       (if (file-remote-p default-directory)
+           " Pr"
+         (format " Pr[%s]" (projectile-project-name))))))
+#+END_SRC
+Once in a project, =Pr[project name]= is shown in the minibar rather than a very long mode line. For Windows OS, the default indexing method is /native/ which is much slower, so ~(setq projectile-indexing-method 'alien)~ should be added to Emacs configuration.
+*** Code Completion and Navigation
+When typing Python code, possible completions should be figured out and provided in a suggestion window. This is done by *company-mode* and *company-jedi*. [[http://company-mode.github.io][company-mode]] is a text completion framework for Emacs which becomes more and more popular than auto-complete (another auto-completion extension for Emacs). [[https://github.com/syohex/emacs-company-jedi][company-jedi]] is a company-mode completion backend for Python Jedi. We need to add company-jedi to the backends of company-mode by the following code:
+#+BEGIN_SRC emacs-lisp
+  (defun company-jedi-setup ()
+    (add-to-list 'company-backends 'company-jedi))
+  (add-hook 'python-mode-hook 'company-jedi-setup)
+#+END_SRC
+Then we need to configure Jedi in Emacs. The basic configuration is shown in the following:
+#+BEGIN_SRC emacs-lisp
+  (setq jedi:setup-keys t)
+  (setq jedi:complete-on-dot t)
+  (add-hook 'python-mode-hook 'jedi:setup)
+#+END_SRC
+When ~jedi:setup-keys~ is non-nil, recommended keybinds are set in =jedi-mode-map= when loading Jedi in Emacs. Setting ~jedi:complete-on-dot~ non-nil enables completion to start automatically after inserting a dot. If you want to append some command line arguments to =jedi:server-command=, use variable ~jedi:server-args~. In my configuration, user can make a file named =.emacs.d/jedi-custom.el= to customize Jedi configuration and, if this file exists, Emacs will load this file automatically using the following code:
+#+BEGIN_SRC emacs-lisp
+  (setq jedi-custom-file (expand-file-name "jedi-custom.el" user-emacs-directory))
+  (when (file-exists-p jedi-custom-file)
+    (load jedi-custom-file))
+#+END_SRC
+
+With these configurations, you should be able to do Python code completion and navigation. Default key-bindings can be found [[http://tkf.github.io/emacs-jedi/released/][here]].
+*** Interactive Programming
+*IPython 4.2.1* is used as the Python shell. Add the following configurations to your configuration file:
+#+BEGIN_SRC emacs-lisp
+  (setq
+   python-shell-interpreter "ipython"
+   python-shell-interpreter-args "-i")
+#+END_SRC
+Then when opening a Python file and hit ~C-c C-p~, another window will be created which runs an IPython interpreter. Some commonly used key bindings are shown here:
+| Key Bindings | Command                      |
+|--------------+------------------------------|
+| <c>          | <c>                          |
+| ~C-c C-c~      | python-shell-send-buffer     |
+| ~C-c C-l~      | python-shell-send-file       |
+| ~C-c C-r~      | python-shell-send-region     |
+| ~C-c C-s~      | python-shell-send-string     |
+| ~C-c C-z~      | python-shell-switch-to-shell |
+*** Syntax Checking and Formating
+*Flycheck* is a real-time syntax checking extension for Emacs which already has a number of extensions. It has great support for Python with Flake8. We customize *flycheck-display-errors-functions* to be *flycheck-display-error-message-unless-error-list* so that it only show displays errors when the error list is not visible with default key binding ~C-c ! l~. *flycheck-color-mode-line* package is also included to color the mode line according to the Flycheck state of the current buffer. Detailed configurations are shown:
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
+
+  (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+#+END_SRC
+
+*py-autopep8* is used in Emacs to work with external tool autopep8 to automatically formatting the current buffer according to Python's PEP8. Once installed, enable automatically formatting when saving the current buffer contents by
+#+BEGIN_SRC emacs-lisp
+  (require 'py-autopep8)
+  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+#+END_SRC
+
+
+* Footnotes
+
+[fn:1] Emacs Wiki - Iedit, https://www.emacswiki.org/emacs/Iedit
+
+[fn:2] IPython Docs: What's new in IPython, http://ipython.readthedocs.io/en/stable/whatsnew/version5.html
+
+[fn:3] Python Package Index: autopep8, https://pypi.python.org/pypi/autopep8
+
+[fn:4] Python Package Index: Jedi, https://pypi.python.org/pypi/jedi/
+
+[fn:5] Emacs Projectile Docs: Home, http://projectile.readthedocs.io/en/latest/
+
+[fn:6] Emacs Wiki - Python Programming in Emacs, https://www.emacswiki.org/emacs/PythonProgrammingInEmacs
+
+[fn:7] Python Package Index: flake8, https://pypi.python.org/pypi/flake8

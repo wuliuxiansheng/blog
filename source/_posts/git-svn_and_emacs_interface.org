@@ -1,0 +1,57 @@
+#+TITLE: git-svn and Emacs Interface
+#+DATE: <2017-03-07>
+#+LAYOUT: post
+#+TAGS: Git, Subversion, Emacs
+#+CATEGORIES:
+
+Git is becoming more and more popular nowadays and there are also more and more excellent packages interacting with Git using Emacs, such as [[https://magit.vc/][Magit]]. Also [[https://github.com/bbatsov/projectile][Projectile]], a very nice project interaction library for Emacs, is not working well with Subversion repositories, for example, indexing is slow and contents sometimes cannot be updated. Hence, it is necessary to interact with Subversion using Git interface. /git svn/ is a simple conduit for changesets between Subversion and Git.[fn:1]
+
+#+HTML: <!--more-->
+
+* Command
+The command format is
+#+BEGIN_SRC sh
+  git svn <command> [option] [arguments]
+#+END_SRC
+and here are some commonly used command:
+- */git svn clone/*
+
+   Runs /init/ and /fetch/. It will automatically create a directory based on the basename of the URL passed to it; or if a second argument is passed, it will create a directory and work within that.[fn:1]
+- */git svn rebase/*
+
+  This fetches revisions from the SVN part of the current HEAD and rebases the current (uncommitted to SVN) work against it. This works similarly to =svn update= or =git pull= except that it preserves linear history with /git rebase/ instead of /git merge/ for ease of dcommitting with /git svn/.[fn:1]
+- */git svn dcommit/*
+
+  Commit each diff from the current branch directly to the SVN repository, and then rebase or reset (depending on whether or not there is a diff between SVN and head). This will create a revision in SVN for each commit in Git.[fn:1]
+
+* Emacs Integration
+Purcell came up with some convenient bindings for running =git svn= from emacs:
+#+BEGIN_SRC emacs-lisp
+  (after-load 'compile
+    (dolist (defn (list '(git-svn-updated "^\t[A-Z]\t\\(.*\\)$" 1 nil nil 0 1)
+                        '(git-svn-needs-update "^\\(.*\\): needs update$" 1 nil nil 2 1)))
+      (add-to-list 'compilation-error-regexp-alist-alist defn)
+      (add-to-list 'compilation-error-regexp-alist (car defn))))
+
+  (defvar git-svn--available-commands nil "Cached list of git svn subcommands")
+  (defun git-svn--available-commands ()
+    (or git-svn--available-commands
+        (setq git-svn--available-commands
+              (sanityinc/string-all-matches
+               "^  \\([a-z\\-]+\\) +"
+               (shell-command-to-string "git svn help") 1))))
+
+  (defun git-svn (dir command)
+    "Run a git svn subcommand in DIR."
+    (interactive (list (read-directory-name "Directory: ")
+                       (completing-read "git-svn command: " (git-svn--available-commands) nil t nil nil (git-svn--available-commands))))
+    (let* ((default-directory (vc-git-root dir))
+           (compilation-buffer-name-function (lambda (major-mode-name) "*git-svn*")))
+      (compile (concat "git svn " command))))
+#+END_SRC
+
+With this configuration code, you can hit =M-x= and type =git-svn=. Then you need to select a Git directory and choose the command, like =rebase= and =dcommit= for running.
+
+* Footnotes
+
+[fn:1] [[https://git-scm.com/docs/git-svn][git-svn - Bidirectional operation between a Subversion repository and Git]]

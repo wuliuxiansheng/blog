@@ -1,0 +1,25 @@
+* About Me
+My name is Chao Liu, a graduate student in University of Pennsylvania. I am currently pursuing my Ph.D degree, working in ModLab (Modular Robotics lab in GRASP lab) under Professor Mark Yim.
+
+* Keywords
+Robotics, Modular Robotics, Control
+
+* Contact
+[[mailto:chaoliu@seas.upenn.edu][chaoliu@upenn]]
+
+
+
+#+TITLE: index
+#+DATE: <2016-07-03 Sun>
+#+AUTHOR: Chao Liu
+#+EMAIL: chaoliu@seas.upenn.edu
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:nil todo:t |:t
+#+CREATOR: Emacs 24.5.1 (Org mode 8.2.10)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
