@@ -18,7 +18,7 @@ This part is already described in another post [[http://www.seas.upenn.edu/~chao
 ** Project Management
 See [[http://www.seas.upenn.edu/~chaoliu/2017/09/01/python-programming-in-emacs/][Project Management]] section in another post about Python programming.
 ** Code Completion and Navigation
-In order to do code completion for C/C++ programming, a persistent database of references, declarations, definitions and symbol names is required for each C/C++ project. [[http://cedet.sourceforge.net/][CEDET]] and [[http://www.rtags.net][RTags]] are used to generate database for different C/C++ project. =CEDET= is a built-in package since Emacs 23.2 which is developed purely by Elisp, so it is almost a ready-to-go package for most users but it is also not very efficient for big C/C++ projects. =RTags= is C/C++ indexer with integration for Emacs based on clang and it is faster than CEDET but also more complicated to configure and use. Also RTags is not good at completion and [[https://github.com/Sarcasm/irony-mode][Irony-Mode]] is a good complementary package that is also powered by libclang.
+In order to do code completion for C/C++ programming, a persistent database of references, declarations, definitions and symbol names is required for each C/C++ project. [[http://cedet.sourceforge.net/][CEDET]] and [[http://www.rtags.net][RTags]] are used to generate database for different C/C++ project. =CEDET= is a built-in package since Emacs 23.2 which is developed purely by Elisp, so it is almost a ready-to-go package for most users but it is also not very efficient for big C/C++ projects. =RTags= is C/C++ indexer with integration for Emacs based on clang and it is faster than CEDET but also more complicated to configure and use.
 
 *** CEDET
 =CEDET= is a Collection of Emacs Development Environment Tools written with the end goal of creating an advanced development environment in Emacs [fn:1]. Since it is already merged into Emacs distribution since Emacs 23.2, we just need to enable its basic functions by the following code:
@@ -96,7 +96,7 @@ Finally, loading these two setup functions for C/C++ mode in Emacs by adding hoo
 #+END_SRC
 With these configurations, when opening a ~.c~ or ~.cpp~ file in Emacs, CEDET will parse the project and =.emacs.d/semanticdb/= is created accordingly. Then you can do code completion, navigation and some other cool features provided by CEDET. More detailed information can be found in [[http://cedet.sourceforge.net][CEDET project page]] and [[http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html][this post]] [fn:3].
 
-*** RTags + Irony-Mode
+*** RTags
 RTags is a client/server application that indexes C/C++ code and keeps a persistent file-based database of references, declarations, definitions, symbolnames etc [fn:4]. The package is based on clang so that it is faster than CEDET but some external tools are required, including =LLVM/Clang= (>= 3.3) =GCC/Clang= (>= 4.7/3.2) and =cmake= (>= 2.8). In Emacs, load RTags with the following code after installation:
 #+BEGIN_SRC emacs-lisp
   (rtags-enable-standard-keybindings)
@@ -105,43 +105,37 @@ RTags is a client/server application that indexes C/C++ code and keeps a persist
 #+END_SRC
 ~rtags-diagnostics~ is used to start an asynchronous process in a buffer to receive warnings/errors from clang whenever a file gets reindexed. It integrates with =flymake= to put highlighting on code with warnings and errors [fn:4].
 
-RTags is mainly used for source code navigation. For code completion, Irony-Mode is a better option. Configure Irony-Mode with the following code:
+=company-rtags= is used for code completion. It can be configured with the following function, including header files completion:
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-#+END_SRC
-Then integrate Irony-Mode with company mode by =company-irony=:
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
-  (setq company-irony-ignore-case 'smart)
-  (defun company-irony-setup ()
-    "Configure company-backends for company-irony."
+  (defun company-rtags-setup ()
+    "Configure company-backends for company-rtags."
     (delete 'company-semantic company-backends)
-    (push '(company-irony :with company-yasnippet) company-backends))
-#+END_SRC
-Header files completion is implemented by [[https://github.com/hotpxl/company-irony-c-headers][company-irony-c-headers]] package using the following configuration code:
-#+BEGIN_SRC emacs-lisp  (require-package 'company-irony-c-headers)
-  (defun company-irony-c-headers-setup ()
-    "Configure company-backends for company-irony-c-headers."
-    (add-to-list 'company-backends 'company-irony-c-headers))
+    (setq rtags-completions-enabled t)
+    (push '(company-rtags :with company-yasnippet) company-backends))
 #+END_SRC
 
-Finally, loading RTags, Irony-Mode and these configurations by adding hooks:
+Finally, loading RTags and these configurations by adding hooks:
 #+BEGIN_SRC emacs-lisp
   (rtags-start-process-unless-running)
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'c++-mode-hook 'company-irony-c-headers-setup)
-  (add-hook 'c-mode-hook 'company-irony-c-headers-setup)
-  (add-hook 'c++-mode-hook 'company-irony-setup)
-  (add-hook 'c-mode-hook 'company-irony-setup)
+  (add-hook 'c++-mode-hook 'company-rtags-setup)
+  (add-hook 'c-mode-hook 'company-rtags-setup)
 #+END_SRC
 
-After installing required packages and loading these configurations, before working on C/C++ projects, run ~rtags-install~ and ~irony-install-server~ in Emacs to finish installation. RTags and Irony-Mode need to know the compile flags and =compile_commands.json= can be generated by various tools depending on your project build system. Once the compile flags is generated, run ~.emacs/path/to/rc -J /path/to/directory/containing/compile_commands.json~ to tell =rdm= about the compile flags. Then Emacs is ready for C/C++ programming.
+After installing required packages and loading these configurations, before working on C/C++ projects, run ~rtags-install~ in Emacs to finish installation. RTags needs to know the compile flags and =compile_commands.json= can be generated by various tools depending on your project build system. Once the compile flags is generated, run ~.emacs/path/to/rc -J /path/to/directory/containing/compile_commands.json~ to tell =rdm= about the compile flags. Then Emacs is ready for C/C++ programming.
 ** Syntax Checking and Formatting
-Irony-Mode can be integrated with [[http://www.flycheck.org/en/latest/][Flycheck]] by [[https://github.com/Sarcasm/flycheck-irony][flycheck-irony]] package using the following code:
+RTags can be integrated with [[http://www.flycheck.org/en/latest/][Flycheck]] by =flycheck-rtags= package using the following function:
 #+BEGIN_SRC emacs-lisp
-  (eval-after-load 'flycheck
-    '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  (require 'flycheck-rtags)
+  (defun flycheck-rtags-setup ()
+    "Configure flycheck-rtags."
+    (flycheck-select-checker 'rtags)
+    (setq-local flycheck-highlighting-mode nil)
+    (setq-local flycheck-check-syntax-automatically nil))
+#+END_SRC
+Then just add hooks for C/C++ code by:
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c++-mode-hook 'flycheck-rtags-setup)
+  (add-hook 'c-mode-hook 'flycheck-rtags-setup)
 #+END_SRC
 [[https://github.com/sonatard/clang-format][clang-format]] is used to format C/C++ code automatically by the following code:
 #+BEGIN_SRC emacs-lisp
@@ -150,7 +144,7 @@ Irony-Mode can be integrated with [[http://www.flycheck.org/en/latest/][Flycheck
   (add-hook 'c++-mode-hook 'clang-format-on-save)
   (add-hook 'c-mode-hook 'clang-format-on-save)
 #+END_SRC
-C/C++ codes are formatted automatically when saved. The desired format can be configured by adding clang-format style option (~setq clang-format-style-option "option"~) or generating =clang-format= from [[https://zed0.co.uk/clang-format-configurator/][this configurator]].
+C/C++ codes are formatted automatically when saved. The desired format can be configured by adding clang-format style option (~setq clang-format-style-option "option"~) or generating =clang-format= from [[https://zed0.co.uk/clang-format-configurator/][this configurator]]. For better programming experiences, Emacs cc-mode style should be correspondent with your clang-format. Refer to [[https://www.gnu.org/software/emacs/manual/html_node/ccmode/Customizing-Indentation.html#Customizing-Indentation][Customizing Indentation]] for more details.
 ** Others
 *** CMake
 [[https://cmake.org/][CMake]] is a commonly used tool to build C/C++ projects. Install =cmake-mode= and add the following to enable it:
@@ -191,18 +185,16 @@ For microcontroller programming, there are three commonly used commands: ~make~,
   (add-hook 'c++-mode-hook 'cc-mode-compile)
 #+END_SRC
 Then when editing C/C++ embedded code, user can call these commands more conveniently without opening a shell. The reason why all three commands have ~cd ..~ is that, for me, the =Makefile= is on top of source files and header files.
-*** Switch between CEDET and RTags/Irony-Mode
+*** Switch between CEDET and RTags
 For a project, we use either CEDET or RTags/Irony-Mode. Two interactive functions are made to switch from one to another by the following:
 #+BEGIN_SRC emacs-lisp
   (defun cedet-enable ()
     "Start CEDET."
     (interactive)
-    (remove-hook 'c++-mode-hook 'irony-mode)
-    (remove-hook 'c-mode-hook 'irony-mode)
-    (remove-hook 'c++-mode-hook 'company-irony-c-headers-setup)
-    (remove-hook 'c-mode-hook 'company-irony-c-headers-setup)
-    (remove-hook 'c++-mode-hook 'company-irony-setup)
-    (remove-hook 'c-mode-hook 'company-irony-setup)
+    (remove-hook 'c++-mode-hook 'company-rtags-setup)
+    (remove-hook 'c-mode-hook 'company-rtags-setup)
+    (remove-hook 'c++-mode-hook 'flycheck-rtags-setup)
+    (remove-hook 'c-mode-hook 'flycheck-rtags-setup)
     (semantic-enable)
     (add-hook 'c++-mode-hook 'company-c-headers-setup)
     (add-hook 'c-mode-hook 'company-c-headers-setup)
@@ -219,12 +211,10 @@ For a project, we use either CEDET or RTags/Irony-Mode. Two interactive function
     (remove-hook 'c++-mode-hook 'company-semantic-setup)
     (remove-hook 'c-mode-hook 'company-semantic-setup)
     (rtags-start-process-unless-running)
-    (add-hook 'c++-mode-hook 'irony-mode)
-    (add-hook 'c-mode-hook 'irony-mode)
-    (add-hook 'c++-mode-hook 'company-irony-c-headers-setup)
-    (add-hook 'c-mode-hook 'company-irony-c-headers-setup)
-    (add-hook 'c++-mode-hook 'company-irony-setup)
-    (add-hook 'c-mode-hook 'company-irony-setup)
+    (add-hook 'c++-mode-hook 'company-rtags-setup)
+    (add-hook 'c-mode-hook 'company-rtags-setup)
+    (add-hook 'c++-mode-hook 'flycheck-rtags-setup)
+    (add-hook 'c-mode-hook 'flycheck-rtags-setup)
     )
 #+END_SRC
 

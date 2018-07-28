@@ -81,7 +81,7 @@ deploy:
   type: git
   repo: https://github.com/wuliuxiansheng/wuliuxiansheng.github.com
   branch: master
-  message: Add Arduino part to Emacs Configuration post
+  message: Update C/C++ Programming in Emacs post
 
 # hexo-renderer-org
 ## Docs: https://github.com/coldnew/hexo-render-org
