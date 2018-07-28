@@ -92,7 +92,7 @@ org:
   common: |
     #+OPTIONS: toc:nil num:nil\n
     #+BIND: org-html-postamble nil
-  daemonize: false
+#  daemonize: false
 
 # Sidebar Avatar
 avatar: /images/avatars/on_the_way.jpg
