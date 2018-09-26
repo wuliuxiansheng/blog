@@ -9,7 +9,7 @@ Robotics, Modular Robotics, Control
 
 
 
-#+TITLE: index
+#+TITLE:
 #+DATE: <2016-07-03 Sun>
 #+AUTHOR: Chao Liu
 #+EMAIL: chaoliu@seas.upenn.edu

@@ -26,11 +26,11 @@ There are three different installation modes: /full/, /text/ and /programming/. 
   1. *Semantic* with *company-semantic* is configured for C/C++ programming. See [[http://cedet.sourceforge.net/semantic.shtml][Semantic]] in CEDET, for details;
   2. *EDE* mode is enabled for C/C++ project and project local variables can be stored in =.emacs.d/cc-mode-projects.el=;
   3. *company-c-headers* is configured to enable the completion of C/C++ header file names using Company mode for Emacs and =.emacs.d/cc-mode-header-custom.el= can be used to customize the include paths.
-- RTags and Irony-Mode Configuration
+- RTags Configuration
   1. *RTags* is configured for C/C++ code navigation. See [[http://www.rtags.net][RTags]] for details;
-  2. *Irony-Mode* with *company-irony* is configured for C/C++ code completion using Company mode. See [[https://github.com/Sarcasm/irony-mode][Irony-Mode]] for details;
-  3. *company-irony-c-headers* is configured to enable the completion of C/C++ header files using Company mode;
-  4. *flycheck-irony* package is configured to work with *Flycheck* for syntax checking.
+  # 2. *company-irony-c-headers* is configured to enable the completion of C/C++ header files using Company mode;
+  2. *company-rtags* is configured for code completion using Company mode;
+  3. *flycheck-irony* package is configured to work with *Flycheck* for syntax checking.
 - *cmake-mode*, as well as *company-cmake*, are configured for editing CMake source files.
 - *clang-format* is configured to automatically format C/C++ code.
 Detailed configuration introduction can be found in [[http://www.seas.upenn.edu/~chaoliu/2017/09/01/c-cpp-programming-in-emacs/][this post]].
@@ -46,7 +46,7 @@ Detailed configuration introduction can be found in [[http://www.seas.upenn.edu/
 - *yaml-mode*, *nxml-mode* and *cmake-mode* are configured for editing YAML files, XML files and =CMakeLists.txt= respectively.
 *** Arduino
 - *arduino-mode* is configured for programming Arduino boards;
-- *Irony-Mode* with *company-irony* is configured for code completion;
+- *Irony-Mode* with *company-irony* is configured for code completion using Company mode. See [[https://github.com/Sarcasm/irony-mode][Irony-Mode]] for details;
 - *company-c-headers* is configured for header file completion.
 
 ** Writing
