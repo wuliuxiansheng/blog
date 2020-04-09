@@ -100,8 +100,8 @@ org:
 avatar: /images/avatars/on_the_way.jpg
 
 # Social
-social:
-  GitHub: https://github.com/wuliuxiansheng
-  University of Pennsylvania: http://www.upenn.edu
-  GRASP Lab: https://www.grasp.upenn.edu
-  ModLab: http://modlabupenn.org
+# social:
+#   GitHub: https://github.com/wuliuxiansheng
+#   University of Pennsylvania: http://www.upenn.edu
+#   GRASP Lab: https://www.grasp.upenn.edu
+#   ModLab: http://modlabupenn.org
