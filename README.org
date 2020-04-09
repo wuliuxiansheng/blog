@@ -14,4 +14,4 @@
 #+SELECT_TAGS: export
 #+OPTIONS: toc:nil
 
-My blog source files powered by [[https://hexo.io/][Hexo]] and rendered by [[https://github.com/coldnew/hexo-renderer-org][hexo-renderer-org]]. This repo doesn't contain theme plugin but all theme configurations are in =source/data/next.yml=.
+My blog source files powered by [[https://hexo.io/][Hexo]] and rendered by [[https://github.com/coldnew/hexo-renderer-org][hexo-renderer-org]]. This repo doesn't contain theme plugin but all theme configurations are in =source/data/next.yml=. Customize the path or command for emacs in =_config.yml= for different systems.
