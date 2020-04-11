@@ -203,9 +203,9 @@ links_settings:
   layout: block
 
 links:
-  University of Pennsylvania: http://www.upenn.edu
-  GRASP Lab: https://www.grasp.upenn.edu
   ModLab: http://modlabupenn.org
+  GRASP Lab: https://www.grasp.upenn.edu
+  University of Pennsylvania: http://www.upenn.edu
   Dalian Jiaotong University: http://www.djtu.edu.cn
 
 # Table of Contents in the Sidebar

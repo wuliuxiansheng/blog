@@ -1,25 +1,27 @@
-* About Me
-My name is Chao Liu, a graduate student in University of Pennsylvania. I am currently pursuing my Ph.D degree, working in ModLab (Modular Robotics lab in GRASP lab) under Professor Mark Yim.
-
-* Keywords
-Robotics, Modular Robotics, Control
-
-* Contact
-[[mailto:chaoliu@seas.upenn.edu][chaoliu@upenn]]
-
-
-
 #+TITLE:
 #+DATE: <2016-07-03 Sun>
 #+AUTHOR: Chao Liu
 #+EMAIL: chaoliu@seas.upenn.edu
-#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
-#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
-#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
-#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:nil todo:t |:t
-#+CREATOR: Emacs 24.5.1 (Org mode 8.2.10)
-#+DESCRIPTION:
-#+EXCLUDE_TAGS: noexport
-#+KEYWORDS:
-#+LANGUAGE: en
-#+SELECT_TAGS: export
+#+OPTIONS: num:nil toc:nil
+* About Me
+My name is Chao Liu, a graduate student in University of Pennsylvania. I am currently pursuing my Ph.D degree, working in ModLab (Modular Robotics lab in GRASP lab) under Professor Mark Yim.
+
+* Research Interest
+Modular Robotics, Control and Motion Planning
+
+* Contact
+[[mailto:chaoliu@seas.upenn.edu][chaoliu@upenn]]
+* Publications
+*** Journal Articles
+- *C. Liu*, M. Whitzer and M. Yim, "A Distributed Reconfiguration Planning Algorithm for Modular Robots," in /IEEE Robotics and Automation Letters/, vol. 4, no. 4, pp. 4231-4238, Oct. 2019. [[https://www.modlabupenn.org/wp-content/uploads/2019/08/chao_smores_reconfiguration_2019.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+*** Conference Papers
+- *C. Liu*, and M. Yim, "A Quadratic Programming Approach to Modular Robot Control and Motion Planning," in /2020 Forth IEEE International Conference on Roboti Computing (IRC), to be presented/, Taichung, Taiwan, 2020. [[https://www.modlabupenn.org/wp-content/uploads/2020/02/chao_irc_2020.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- *C. Liu*, S. Yu, and M. Yim, "A Fast Configuration Space Algorithm for Variable Topology Truss Modular Robots," in /2020 International Conference on Robotics and Automation (ICRA), to be presented/, Pairs, France, 2020. [[https://www.modlabupenn.org/wp-content/uploads/2020/03/chao_vtt_icra_2020.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- *C. Liu*, Q. Lin, H. Kim, and M. Yim, “Parallel Self-Assembly with SMORES-EP, a Modular Robot,” in /2020 International Conference on Robotics and Automation (ICRA), to be presented/, Paris, France, 2020. [[https://www.modlabupenn.org/wp-content/uploads/2020/03/chao_smores_assembly_2020.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- *C. Liu*, A. Bera, T. Tsabedze, D. Edgar, and M. Yim, "Spiral Zipper Manipulator for Aerial Grasping and Manipulation," /2019 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)/, Macau, China, 2019, pp. 3179-3184. [[https://www.modlabupenn.org/wp-content/uploads/2020/02/chao_rcta_arm_2019.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- *C. Liu* and M. Yim, "Reconfiguration Motion Planning for Variable Topology Truss," /2019 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)/, Macau, China, 2019, pp. 1941-1948. [[https://www.modlabupenn.org/wp-content/uploads/2020/02/chao_vtt_reconfiguration_2019.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- *C. Liu*, S. Yu, and M. Yim, "Shape Morphing for Variable Topology Truss," in /2019 16th International Conference on Ubiquitous Robots (UR)/, Jeju, Korea, 2019. [[https://www.modlabupenn.org/wp-content/uploads/2020/02/chao_vtt_ur_2019.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- C. C. Kessens, M. Horowitz, *C. Liu*, J. Dotterweich, M. Yim and H. L. Edge, "Toward Lateral Aerial Grasping & Manipulation Using Scalable Suction," /2019 International Conference on Robotics and Automation (ICRA)/, Montreal, QC, Canada, 2019, pp. 4181-4186. [[https://www.modlabupenn.org/wp-content/uploads/2019/06/rcta_gripper_2019.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- *C. Liu*, and M. Yim, "Configuration Recognition with Distributed Information for Modular Robots," in /IFRR International Symposium on Robotics Research/, Puerto Varas, Chile, 2017. [[https://www.modlabupenn.org/wp-content/uploads/2019/09/chao_config_recognition_isrr2017.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- T. Tosun, D. Edgar, *C. Liu*, T. Tsabedze, and M. Yim, "PaintPots: Low-cost, Accurate, Highly Customizable Potentiometers for Position Sensing," /2017 IEEE International Conference on Robotics and Automation (ICRA)/, Singapore, 2017, pp. 1212-1218. [[https://www.modlabupenn.org/wp-content/uploads/2017/10/tosun2017paintpots.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
+- T. Tosun, J. Davey, *C. Liu* and M. Yim, "Design and characterization of the EP-Face connector," /2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)/, Daejeon, 2016, pp. 45-51. [[https://www.modlabupenn.org/wp-content/uploads/tosun2016epface.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]

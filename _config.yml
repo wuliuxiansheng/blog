@@ -81,7 +81,7 @@ deploy:
   - type: git
     repo: https://github.com/wuliuxiansheng/wuliuxiansheng.github.com
     branch: master
-    message: Fix common wealth 404 page
+    message: Update next theme to v7 and update about me
   # other deployer
   # - type: leancloud_counter_security_sync
 
