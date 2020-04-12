@@ -1,6 +1,7 @@
 ---
 title: Hello World
 date: 2016-07-03
+updated: 2018-06-23
 comments: false
 ---
 Welcome to [my blog](/~chaoliu) and [Hexo](https://hexo.io/)! This is my very first post using Hexo. Check [documentation](https://hexo.io/docs/) for more info about Hexo.

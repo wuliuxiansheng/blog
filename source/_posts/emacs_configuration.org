@@ -1,5 +1,6 @@
 #+TITLE: Emacs Configuration
 #+DATE: <2017-01-03 Tue>
+#+UPDATED: <2018-09-22>
 #+TAGS: Emacs
 
 * Introduction

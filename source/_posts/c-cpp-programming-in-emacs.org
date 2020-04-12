@@ -1,5 +1,6 @@
 #+TITLE: C/C++ Programming in Emacs
 #+DATE: <2017-09-01>
+#+UPDATED: <2018-07-28>
 #+LAYOUT: post
 #+TAGS: Emacs, C/C++
 #+CATEGORIES:

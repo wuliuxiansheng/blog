@@ -12,9 +12,9 @@ Modular Robotics, Control and Motion Planning
 * Contact
 [[mailto:chaoliu@seas.upenn.edu][chaoliu@upenn]]
 * Publications
-*** Journal Articles
+** Journal Articles
 - *C. Liu*, M. Whitzer and M. Yim, "A Distributed Reconfiguration Planning Algorithm for Modular Robots," in /IEEE Robotics and Automation Letters/, vol. 4, no. 4, pp. 4231-4238, Oct. 2019. [[https://www.modlabupenn.org/wp-content/uploads/2019/08/chao_smores_reconfiguration_2019.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
-*** Conference Papers
+** Conference Papers
 - *C. Liu*, and M. Yim, "A Quadratic Programming Approach to Modular Robot Control and Motion Planning," in /2020 Forth IEEE International Conference on Roboti Computing (IRC), to be presented/, Taichung, Taiwan, 2020. [[https://www.modlabupenn.org/wp-content/uploads/2020/02/chao_irc_2020.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
 - *C. Liu*, S. Yu, and M. Yim, "A Fast Configuration Space Algorithm for Variable Topology Truss Modular Robots," in /2020 International Conference on Robotics and Automation (ICRA), to be presented/, Pairs, France, 2020. [[https://www.modlabupenn.org/wp-content/uploads/2020/03/chao_vtt_icra_2020.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]
 - *C. Liu*, Q. Lin, H. Kim, and M. Yim, “Parallel Self-Assembly with SMORES-EP, a Modular Robot,” in /2020 International Conference on Robotics and Automation (ICRA), to be presented/, Paris, France, 2020. [[https://www.modlabupenn.org/wp-content/uploads/2020/03/chao_smores_assembly_2020.pdf][@@html:<i class="fas fa-file-pdf"></i>@@]]

@@ -1,5 +1,6 @@
 #+TITLE: git-svn and Emacs Interface
 #+DATE: <2017-03-07>
+#+UPDATED: <2018-06-23>
 #+LAYOUT: post
 #+TAGS: Git, Subversion, Emacs
 #+CATEGORIES:
