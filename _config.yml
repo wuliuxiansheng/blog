@@ -81,15 +81,15 @@ deploy:
   - type: git
     repo: https://github.com/wuliuxiansheng/wuliuxiansheng.github.com
     branch: master
-    message: Update next theme to v7 and update about me
+    message: Update favicon and add link after each paper in about page
   # other deployer
   # - type: leancloud_counter_security_sync
 
 # hexo-renderer-org
 ## Docs: https://github.com/coldnew/hexo-render-org
 org:
-  emacs: emacs
-  emacsclient: emacsclient
+  emacs: /Applications/Emacs.app/Contents/MacOS/Emacs
+  emacsclient: /Applications/Emacs.app/Contents/MacOS/bin/emacsclient
   cachedir: ./hexo-org-cache/
   common: |
     #+OPTIONS: toc:nil num:nil\n
