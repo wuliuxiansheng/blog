@@ -189,6 +189,7 @@ social:
   #Skype: skype:yourname?call|chat || fab fa-skype
   GitHub: https://github.com/wuliuxiansheng || fab fa-github
   E-Mail: mailto:chaoliu@seas.upenn.edu || fa fa-envelope
+  ModLab: https://www.modlabupenn.org/people/chao-liu/ || fas fa-robot
 
 social_icons:
   enable: true

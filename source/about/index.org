@@ -4,7 +4,7 @@
 #+EMAIL: chaoliu@seas.upenn.edu
 #+OPTIONS: num:nil toc:nil
 * About Me
-My name is Chao Liu, a graduate student in University of Pennsylvania. I am currently pursuing my Ph.D degree, working in ModLab (Modular Robotics lab in GRASP lab) under Professor Mark Yim. I am mainly working on two self-reconfigurable modular robots: [[https://www.modlabupenn.org/2016/06/18/smores-ep/][SMORES]] and [[https://www.modlabupenn.org/2019/08/08/variable-topology-truss/][Variable Topology Truss]].
+My name is Chao Liu, a graduate student in University of Pennsylvania. I am currently pursuing my Ph.D degree, working in [[https://www.modlabupenn.org][ModLab (Modular Robotics Lab in GRASP Lab)]] under Professor Mark Yim. I am mainly working on two self-reconfigurable modular robots: [[https://www.modlabupenn.org/2016/06/18/smores-ep/][SMORES]] and [[https://www.modlabupenn.org/2019/08/08/variable-topology-truss/][Variable Topology Truss]].
 
 * Research Interest
 Modular Robotics, Control and Motion Planning

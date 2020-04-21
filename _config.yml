@@ -81,7 +81,7 @@ deploy:
   - type: git
     repo: https://github.com/wuliuxiansheng/wuliuxiansheng.github.com
     branch: master
-    message: Update favicon and add link after each paper in about page
+    message: Update about me page
   # other deployer
   # - type: leancloud_counter_security_sync
 
