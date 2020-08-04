@@ -190,6 +190,8 @@ social:
   GitHub: https://github.com/wuliuxiansheng || fab fa-github
   E-Mail: mailto:chaoliu@seas.upenn.edu || fa fa-envelope
   ModLab: https://www.modlabupenn.org/people/chao-liu/ || fas fa-robot
+  Google Scholar: https://scholar.google.com/citations?user=FSwWMcoAAAAJ&hl=en&inst=15561263346091999511&oi=ao || fas fa-graduation-cap
+  ResearchGate: https://www.researchgate.net/profile/Chao_Liu119 || fab fa-researchgate
 
 social_icons:
   enable: true

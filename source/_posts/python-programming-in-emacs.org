@@ -1,6 +1,6 @@
 #+TITLE: Python Programming in Emacs
 #+DATE: <2017-09-01>
-#+UPDATED: <2018-06-23>
+#+UPDATED:
 #+LAYOUT: post
 #+TAGS: Emacs, Python
 #+CATEGORIES:
@@ -76,14 +76,14 @@ With these configurations, you should be able to do Python code completion and n
    python-shell-interpreter-args "-i")
 #+END_SRC
 Then when opening a Python file and hit ~C-c C-p~, another window will be created which runs an IPython interpreter. Some commonly used key bindings are shown here:
-| Key Bindings | Command                      |
+| Key Bindings |           Command            |
 |--------------+------------------------------|
-| <c>          | <c>                          |
-| ~C-c C-c~      | python-shell-send-buffer     |
-| ~C-c C-l~      | python-shell-send-file       |
-| ~C-c C-r~      | python-shell-send-region     |
-| ~C-c C-s~      | python-shell-send-string     |
-| ~C-c C-z~      | python-shell-switch-to-shell |
+|     <c>      |             <c>              |
+|   ~C-c C-c~    |   python-shell-send-buffer   |
+|   ~C-c C-l~    |    python-shell-send-file    |
+|   ~C-c C-r~    |   python-shell-send-region   |
+|   ~C-c C-s~    |   python-shell-send-string   |
+|   ~C-c C-z~    | python-shell-switch-to-shell |
 *** Syntax Checking and Formating
 *Flycheck* is a real-time syntax checking extension for Emacs which already has a number of extensions. It has great support for Python with Flake8. We customize *flycheck-display-errors-functions* to be *flycheck-display-error-message-unless-error-list* so that it only show displays errors when the error list is not visible with default key binding ~C-c ! l~. *flycheck-color-mode-line* package is also included to color the mode line according to the Flycheck state of the current buffer. Detailed configurations are shown:
 #+BEGIN_SRC emacs-lisp
@@ -102,16 +102,16 @@ Then when opening a Python file and hit ~C-c C-p~, another window will be create
 
 * Footnotes
 
-[fn:1] Emacs Wiki - Iedit, https://www.emacswiki.org/emacs/Iedit
+[fn:1] [[https://www.emacswiki.org/emacs/Iedit][Emacs Wiki - Iedit @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:2] IPython Docs: What's new in IPython, http://ipython.readthedocs.io/en/stable/whatsnew/version5.html
+[fn:2] [[http://ipython.readthedocs.io/en/stable/whatsnew/version5.html][IPython Docs: What's new in IPython @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:3] Python Package Index: autopep8, https://pypi.python.org/pypi/autopep8
+[fn:3] [[https://pypi.python.org/pypi/autopep8][Python Package Index: autopep8 @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:4] Python Package Index: Jedi, https://pypi.python.org/pypi/jedi/
+[fn:4] [[https://pypi.python.org/pypi/jedi/][Python Package Index: Jedi @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:5] Emacs Projectile Docs: Home, http://projectile.readthedocs.io/en/latest/
+[fn:5] [[http://projectile.readthedocs.io/en/latest/][Emacs Projectile Docs: Home @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:6] Emacs Wiki - Python Programming in Emacs, https://www.emacswiki.org/emacs/PythonProgrammingInEmacs
+[fn:6] [[https://www.emacswiki.org/emacs/PythonProgrammingInEmacs][Emacs Wiki - Python Programming in Emacs @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:7] Python Package Index: flake8, https://pypi.python.org/pypi/flake8
+[fn:7] [[https://pypi.python.org/pypi/flake8][Python Package Index: flake8 @@html:<i class="fas fa-external-link-alt"></i>@@]]

@@ -1,6 +1,6 @@
 #+TITLE: git-svn and Emacs Interface
 #+DATE: <2017-03-07>
-#+UPDATED: <2018-06-23>
+#+UPDATED:
 #+LAYOUT: post
 #+TAGS: Git, Subversion, Emacs
 #+CATEGORIES:
@@ -55,4 +55,4 @@ With this configuration code, you can hit =M-x= and type =git-svn=. Then you nee
 
 * Footnotes
 
-[fn:1] [[https://git-scm.com/docs/git-svn][git-svn - Bidirectional operation between a Subversion repository and Git]]
+[fn:1] [[https://git-scm.com/docs/git-svn][git-svn - Bidirectional operation between a Subversion repository and Git @@html:<i class="fas fa-external-link-alt"></i>@@]]

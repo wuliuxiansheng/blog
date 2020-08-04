@@ -1,6 +1,6 @@
 #+TITLE: C/C++ Programming in Emacs
 #+DATE: <2017-09-01>
-#+UPDATED: <2018-07-28>
+#+UPDATED:
 #+LAYOUT: post
 #+TAGS: Emacs, C/C++
 #+CATEGORIES:
@@ -221,10 +221,10 @@ For a project, we use either CEDET or RTags/Irony-Mode. Two interactive function
 
 * Footnotes
 
-[fn:1] CEDET Project Page, http://cedet.sourceforge.net
+[fn:1] [[http://cedet.sourceforge.net][CEDET: Collection of Emacs Development Environment Tools @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:2] Emacs Development Environment, https://www.gnu.org/software/emacs/manual/html_node/emacs/EDE.html
+[fn:2] [[https://www.gnu.org/software/emacs/manual/html_node/emacs/EDE.html][Emacs Development Environment @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:3] A Gentle introduction to CEDET, http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html
+[fn:3] [[http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html][A Gentle introduction to CEDET @@html:<i class="fas fa-external-link-alt"></i>@@]]
 
-[fn:4] RTags GitHub Repo, https://github.com/Andersbakken/rtags
+[fn:4] [[https://github.com/Andersbakken/rtags][RTags Github Repo @@html:<i class="fas fa-external-link-alt"></i>@@]]

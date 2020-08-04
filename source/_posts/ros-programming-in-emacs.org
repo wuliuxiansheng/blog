@@ -1,6 +1,6 @@
 #+TITLE: ROS Programming in Emacs
 #+DATE: <2018-03-12>
-#+UPDATED: <2018-06-23>
+#+UPDATED:
 #+LAYOUT: post
 #+TAGS: Robotics, ROS
 #+CATEGORIES:
