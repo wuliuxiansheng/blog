@@ -81,7 +81,7 @@ deploy:
   - type: git
     repo: https://github.com/wuliuxiansheng/wuliuxiansheng.github.com
     branch: master
-    message: Update footnotes in some posts and social links
+    message: Update about me page
   # other deployer
   # - type: leancloud_counter_security_sync
 
